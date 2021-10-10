@@ -1,23 +1,47 @@
-import logo from './logo.svg';
 import './App.css';
+import { useState } from 'react';
+import Title from './components/title.js';
+import Clock from './components/clock.js';
+import Toggle from './components/toggle.js';
+
+
+const todoList = [
+  {
+    id: 1,
+    status: 'false',
+    text: 'practice react'
+  },
+  {
+    id: 2,
+    status: 'false',
+    text: 'play lol'
+  },
+]
+const todoTexts = todoList.map(({ text }) =>
+  <li>{text}</li>
+);
+
 
 function App() {
+  // hook 的寫法
+  // const [date, setDate] = useState(new Date())
+  // setInterval(() => {
+  //   setDate(() => new Date())
+  // }, 1000);
+  
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {
+        <Title
+          name="Hello title！"
+        />
+      }
+      {/* {
+        <Clock date={date} />
+      } */}
+      {
+      // <Toggle />
+      } 
     </div>
   );
 }
