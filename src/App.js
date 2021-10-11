@@ -4,6 +4,7 @@ import Title from './components/title.js';
 import Clock from './components/clock.js';
 import Toggle from './components/toggle.js';
 import Input from './components/input.js';
+import Temperature from './components/temperature.js';
 
 
 const todoList = [
@@ -53,6 +54,9 @@ function App() {
       } 
       {
         <Input />
+      }
+      {
+        <Temperature />
       }
     </div>
   );
