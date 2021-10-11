@@ -1,8 +1,9 @@
 import './App.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Title from './components/title.js';
 import Clock from './components/clock.js';
 import Toggle from './components/toggle.js';
+import Input from './components/input.js';
 
 
 const todoList = [
@@ -24,10 +25,18 @@ const todoTexts = todoList.map(({ text }) =>
 
 function App() {
   // hook 的寫法
-  // const [date, setDate] = useState(new Date())
+  const [date, setDate] = useState(new Date())
   // setInterval(() => {
   //   setDate(() => new Date())
   // }, 1000);
+
+  // setInerval 要搭配 useEffect，不然會瘋狂 re render
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setDate(() => new Date());
+    }, 1000);
+    return () => clearInterval(interval);
+  }, []);
   
   return (
     <div className="App">
@@ -36,12 +45,15 @@ function App() {
           name="Hello title！"
         />
       }
-      {/* {
-        <Clock date={date} />
-      } */}
       {
-      // <Toggle />
+        <Clock date={date} />
+      }
+      {
+        <Toggle />
       } 
+      {
+        <Input />
+      }
     </div>
   );
 }
