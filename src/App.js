@@ -32,6 +32,8 @@ function App() {
   // }, 1000);
 
   // setInerval 要搭配 useEffect，不然會瘋狂 re render
+  // useEffect 第二個參數 array 為空，表示 componentDidMount: 該動作只執行一次
+  // return 的值表示 componentWillUnmount 所執行的工作
   useEffect(() => {
     const interval = setInterval(() => {
       setDate(() => new Date());
