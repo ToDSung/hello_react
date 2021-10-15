@@ -2,6 +2,8 @@ import './App.css';
 import { useState, useEffect } from 'react';
 import  { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import { withRouter } from "react-router";
+import { Provider, useDispatch, useSelector } from 'react-redux';
+import configureStore from './redux/store/configureStore.js';
 import Title from './components/title.js';
 import Clock from './components/clock.js';
 import Toggle from './components/toggle.js';
@@ -26,14 +28,14 @@ const todoTexts = todoList.map(({ text }) =>
 );
 
 
-function App() {
+const App = () => {
   // hook 的寫法
   const [date, setDate] = useState(new Date());
   // setInterval(() => {
-  //   setDate(() => new Date())
-  // }, 1000);
-
-  // setInerval 要搭配 useEffect，不然會瘋狂 re render
+    //   setDate(() => new Date())
+    // }, 1000);
+    
+    // setInerval 要搭配 useEffect，不然會瘋狂 re render
   // useEffect 第二個參數 array 為空，表示 componentDidMount: 該動作只執行一次
   // return 的值表示 componentWillUnmount 所執行的工作
   useEffect(() => {
@@ -42,6 +44,8 @@ function App() {
     }, 1000);
     return () => clearInterval(interval);
   }, []);
+  
+  const darkTheme = useSelector(state => state.darkTheme);
   
   return (
     <div className="App">
@@ -75,8 +79,20 @@ function App() {
           </Switch>
         </div>
       </Router>
+      {
+        darkTheme ? "ON" : "OFF"
+      }
     </div>
   );
 }
 
-export default App;
+const AppWrapper = () => {
+  const store = configureStore()
+  return (
+    <Provider store={store}> 
+      <App />
+    </Provider>
+  )
+}
+
+export default AppWrapper;
