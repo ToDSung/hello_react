@@ -1,5 +1,7 @@
 import './App.css';
 import { useState, useEffect } from 'react';
+import  { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { withRouter } from "react-router";
 import Title from './components/title.js';
 import Clock from './components/clock.js';
 import Toggle from './components/toggle.js';
@@ -26,7 +28,7 @@ const todoTexts = todoList.map(({ text }) =>
 
 function App() {
   // hook 的寫法
-  const [date, setDate] = useState(new Date())
+  const [date, setDate] = useState(new Date());
   // setInterval(() => {
   //   setDate(() => new Date())
   // }, 1000);
@@ -60,6 +62,19 @@ function App() {
       {
         <Temperature />
       }
+      <Router>
+        <div className="App">
+          <p>react router example</p>
+          <ul>
+            <li><Link to="counter">Counter</Link></li>
+            <li><Link to="form">Form</Link></li>
+          </ul>
+          <Switch>
+            <Route path='/counter' component={Toggle}/>
+            <Route path='/form' component={Input}/>
+          </Switch>
+        </div>
+      </Router>
     </div>
   );
 }
