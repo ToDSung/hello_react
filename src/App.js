@@ -1,3 +1,4 @@
+import React from 'react';
 import './App.css';
 import { useState, useEffect } from 'react';
 import  { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
@@ -8,6 +9,7 @@ import Title from './components/title.js';
 import Clock from './components/clock.js';
 import Toggle from './components/toggle.js';
 import Input from './components/input.js';
+import FancyBorder from './components/fancyBorder';
 import Temperature from './components/temperature.js';
 
 
@@ -82,6 +84,16 @@ const App = () => {
       {
         darkTheme ? "ON" : "OFF"
       }
+      {
+        <FancyBorder color="blue">
+          <h1 className="Dialog-title">
+            Welcome
+          </h1>
+          <p className="Dialog-message">
+            Thank you for visiting our spacecraft!
+          </p>
+        </FancyBorder>
+      }
     </div>
   );
 }
@@ -89,9 +101,11 @@ const App = () => {
 const AppWrapper = () => {
   const store = configureStore()
   return (
-    <Provider store={store}> 
-      <App />
-    </Provider>
+    <React.StrictMode>
+      <Provider store={store}> 
+        <App />
+      </Provider>
+    </React.StrictMode>
   )
 }
 
