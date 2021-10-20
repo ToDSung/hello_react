@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import higherOrderComponent from './hocComponent';
 
 const Input = () => {
   const [ text, setText ] = useState('')
@@ -14,4 +15,4 @@ const Input = () => {
   )
 }
 
-export default Input
+export default higherOrderComponent(Input)
