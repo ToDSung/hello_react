@@ -1,8 +1,13 @@
 import { useState, useEffect } from "react";
+import PropTypes from 'prop-types';
 
 const Clock = (props) => {
   // 沒有使用 state 資料變動時，畫面不會變
   // 如果沒有 hook，只有 class 才能建立 state
+
+  Clock.propTypes = {
+    date: PropTypes.instanceOf(Date),
+  }
 
   const [clockChangedCount, setClockChangedCount] = useState(0);
 
