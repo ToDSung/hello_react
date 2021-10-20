@@ -94,6 +94,7 @@ const App = () => {
           </p>
         </FancyBorder>
       }
+      <input type="checkbox" checked="true" />checked property
     </div>
   );
 }
